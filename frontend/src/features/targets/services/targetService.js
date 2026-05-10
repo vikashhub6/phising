@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "/api/targets";
+const API = `${process.env.REACT_APP_BACKEND_URL}/api/targets`;
 
 export const getTargetsService = () => axios.get(API);
 export const getTargetService = (id) => axios.get(`${API}/${id}`);
