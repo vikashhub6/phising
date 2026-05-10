@@ -13,7 +13,7 @@ const DashboardPage = () => {
       try {
         const { data } = await axios.get("/api/dashboard/stats");
         setStats(data.stats);
-        setCampaigns(data.recentCampaigns);
+        setCampaigns(data.recentCampaigns || []);
       } catch {
         toast.error("Failed to load dashboard");
       }
@@ -56,7 +56,7 @@ const DashboardPage = () => {
       ) : (
         campaigns.slice(0, 5).map((c) => (
           <div key={c._id} style={styles.row}>
-            <span style={styles.rowName}>{c.target?.name}</span>
+            <span style={styles.rowName}>{c.target?.name || "N/A"}</span>
             <span style={styles.rowSubject}>{c.subject}</span>
             <span style={{ ...styles.badge, background: c.status === "clicked" ? "#10b981" : c.status === "opened" ? "#f59e0b" : "#3b82f6" }}>
               {c.status}
